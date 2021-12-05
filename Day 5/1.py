@@ -12,7 +12,8 @@ def main():
                 rot = list(zip(*coord))
                 cols = sorted(rot[0])
                 rows = sorted(rot[1])
-                grid[rows[0]:rows[1] + 1, cols[0]:cols[1] + 1] = grid[rows[0]:rows[1] + 1, cols[0]:cols[1] + 1] + 1
+                area = grid[rows[0]:rows[1] + 1, cols[0]:cols[1] + 1]
+                area[:] = area + 1
         return((grid > 1).sum())
 
 

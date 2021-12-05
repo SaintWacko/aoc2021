@@ -12,17 +12,16 @@ def main():
             rot = list(zip(*coord))
             cols = sorted(rot[0])
             rows = sorted(rot[1])
+            area = grid[rows[0]:rows[1] + 1, cols[0]:cols[1] + 1]
             if any(np.all(coord == coord[0, :], axis=0)):
-                grid[rows[0]:rows[1] + 1, cols[0]:cols[1] + 1] = grid[rows[0]:rows[1] + 1, cols[0]:cols[1] + 1] + 1
+                area[:] = area + 1
             else:
                 if (rot[0][0] > rot[0][1]) == (rot[1][0] > rot[1][1]):
-                    np.fill_diagonal(grid[rows[0]:rows[1] + 1, cols[0]:cols[1] + 1], grid[rows[0]:rows[1] + 1, cols[0]:cols[1] + 1].diagonal() + 1)
+                    np.fill_diagonal(area[:], area.diagonal() + 1)
                 else:
-                    np.fill_diagonal(np.fliplr(grid[rows[0]:rows[1] + 1, cols[0]:cols[1] + 1]), np.fliplr(grid[rows[0]:rows[1] + 1, cols[0]:cols[1] + 1]).diagonal() + 1)
+                    np.fill_diagonal(np.fliplr(area[:]), np.fliplr(area).diagonal() + 1)
         return((grid > 1).sum())
 
 
 if __name__ == "__main__":
     print(main())
-
-
