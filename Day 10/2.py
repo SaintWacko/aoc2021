@@ -10,7 +10,6 @@ def main():
         lines = [list(x) for x in file.read().splitlines()]
         for line in lines:
             stack = []
-            clean = True
             total = 0
             for char in line:
                 if char in openings:
@@ -19,9 +18,8 @@ def main():
                     if char == closings[openings.index(stack[-1])]:
                         stack.pop()
                     else:
-                        clean = False
                         break
-            if clean:
+            else:
                 for char in stack[::-1]:
                     total = total * 5 + scoring[char]
                 scores.append(total)
